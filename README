@@ -2,3 +2,7 @@ curl -fsSL https://deb.nodesource.com/setup_19.x | sudo -E bash - &&\
 sudo apt-get install -y nodejs
 
 apt install tmate git dnsutils
+
+git clone https://github.com/UniqueDay/speedtest.git
+cd speedtest
+node speedtest.js 
