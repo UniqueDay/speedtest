@@ -5,7 +5,7 @@ const agent = new https.Agent({
     keepAlive: true,
 })
 
-await agent.createConnection();
+// await agent.createConnection();
 
 const host = process.argv[2]
 const ip = process.argv[3]
