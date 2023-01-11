@@ -5,4 +5,5 @@ apt install -y tmate git dnsutils
 
 git clone https://github.com/UniqueDay/speedtest.git
 cd speedtest
+npm i
 node speedtest.js 
