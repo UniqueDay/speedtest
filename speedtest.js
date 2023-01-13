@@ -12,7 +12,7 @@ const ip = process.argv[3]
 const times = []
 for (let i = 0; i < 20; i++) {
     const start = new Date()
-    await fetch(`https://${ip}`, {
+    await fetch(`https://${ip}/v1/accounts/list`, {
         agent,
         redirect: 'manual',
         headers: { host: host },
