@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
 import https from 'https'
-
+import { resolve4 } from 'dns/promises'
 const agent = new https.Agent({
     keepAlive: true,
 })
@@ -8,21 +8,24 @@ const agent = new https.Agent({
 // await agent.createConnection();
 
 const host = process.argv[2]
-const ip = process.argv[3]
-const times = []
-for (let i = 0; i < 20; i++) {
-    const start = new Date()
-    await fetch(`https://${ip}/v1/accounts/list`, {
-        agent,
-        redirect: 'manual',
-        headers: { host: host },
-    })
-    const delta = new Date() - start
-    console.log(delta)
-    times.push(delta)
-}
+const ips = await resolve4(host);
+const iterations = 20
 
-console.log("times", meanMedianMode(times));
+for (const ip of ips){
+    const times = []
+    for (let i = 0; i < iterations; i++) {
+        const start = performance.now()
+        await fetch(`https://${ip}`, {
+            agent,
+            redirect: 'manual',
+            headers: { host: host },
+        })
+        const delta = performance.now() - start
+        console.log(delta)
+        times.push(delta)
+    }
+    console.log("times", meanMedianMode(times));
+}
 
 
 function meanMedianMode(array) {
