@@ -12,6 +12,7 @@ const ips = await resolve4(host);
 const iterations = 20
 
 for (const ip of ips){
+    console.log('TESTING IP: '+ip)
     const times = []
     for (let i = 0; i < iterations; i++) {
         const start = performance.now()
