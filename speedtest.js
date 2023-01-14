@@ -12,7 +12,6 @@ const ips = await resolve4(host);
 const iterations = 20
 
 for (const ip of ips){
-    console.log('TESTING IP: '+ip)
     const times = []
     for (let i = 0; i < iterations; i++) {
         const start = performance.now()
@@ -25,7 +24,7 @@ for (const ip of ips){
         console.log(delta)
         times.push(delta)
     }
-    console.log("times", meanMedianMode(times));
+    console.log(`Times for ${ip} —`, meanMedianMode(times));
 }
 
 
